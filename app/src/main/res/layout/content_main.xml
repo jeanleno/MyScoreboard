@@ -9,11 +9,40 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.jeanheidemann.myscoreboard.MainActivity"
-    tools:showIn="@layout/activity_main">
+    tools:context=".activities.MainActivity"
+    tools:showIn="@layout/activity_main"
+    android:gravity="center_horizontal">
 
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:layout_gravity="center"
+        android:gravity="center">
+
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:rowCount="2"
+            android:columnCount="2"
+            android:layout_gravity="center">
+
+            <Button android:id="@+id/btnFootball"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Futebol"/>
+            <Button android:id="@+id/btnBasketball"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Baskete"/>
+            <Button android:id="@+id/btnVolleyball"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Volei"/>
+            <Button android:id="@+id/btnTrick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Truco"/>
+
+        </GridLayout>
+    </LinearLayout>
 </RelativeLayout>
