@@ -53,4 +53,23 @@ public class MadalitySettings {
     public void setInitialPoints(int initialPoints) {
         this.initialPoints = initialPoints;
     }
+
+    public String toXml() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("<modality>");
+        builder.append("<name>" + this.name + "</name>");
+        builder.append("<order>" + this.order.ordinal() + "</order>");
+
+        builder.append("<listPossiblePoints>");
+        for (int points: this.listPossiblePoints) {
+            builder.append("<points>" + points + "</points>");
+        }
+        builder.append("</listPossiblePoints>");
+
+        builder.append("<maxTeams>" + this.maxTeams + "</maxTeams>");
+        builder.append("<initialPoints>" + this.initialPoints + "</initialPoints>");
+        builder.append("<m/odality>");
+
+        return builder.toString();
+    }
 }
