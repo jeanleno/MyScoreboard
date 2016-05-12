@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modality>
+    <name>Football</name>
+    <order>0</order>
+    <listPossiblePoints>
+        <points>1</points>
+    </listPossiblePoints>
+    <maxTeams>2</maxTeams>
+    <initialPoints>0</initialPoints>
+</modality>
