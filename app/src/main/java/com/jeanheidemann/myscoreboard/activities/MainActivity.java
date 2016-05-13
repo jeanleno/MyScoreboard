@@ -10,8 +10,17 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.jeanheidemann.myscoreboard.R;
+import com.jeanheidemann.myscoreboard.dao.ModalitySettingsDAO;
+import com.jeanheidemann.myscoreboard.entity.ModalitySettings;
+import com.jeanheidemann.myscoreboard.enums.Order;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,8 +46,40 @@ public class MainActivity extends AppCompatActivity {
         this.btnFootball.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, FootballActivity.class);
-                startActivity(i);
+
+                Toast.makeText(MainActivity.this, "Teste", Toast.LENGTH_SHORT).show();
+
+                ModalitySettingsDAO dao = new ModalitySettingsDAO();
+                ModalitySettings settings = new ModalitySettings();
+
+                settings.setInitialPoints(1);
+                ArrayList<Integer> list = new ArrayList<Integer>();
+                list.add(1);
+                settings.setListPossiblePoints(list);
+                settings.setName("Futebol");
+                settings.setMaxTeams(2);
+                settings.setOrder(Order.ASC);
+
+                try {
+                    dao.saveModalitySettings(settings, MainActivity.this);
+                    Toast.makeText(MainActivity.this, "Modalidade salva com sucesso!!!: " + MainActivity.this.getFilesDir().toString(), Toast.LENGTH_SHORT).show();
+                } catch (Exception ex) {
+                    Toast.makeText(MainActivity.this, "Erro ao salvar: " + ex.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+
+                try {
+                    FileInputStream in = openFileInput("Modality_Futebol.xml");
+                    InputStreamReader inputStreamReader = new InputStreamReader(in);
+                    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                    StringBuilder sb = new StringBuilder();
+                    String line;
+                    while ((line = bufferedReader.readLine()) != null) {
+                        sb.append(line);
+                    }
+                    Toast.makeText(MainActivity.this, "XML: " + sb.toString(), Toast.LENGTH_LONG).show();
+                } catch(Exception ex) {
+                    Toast.makeText(MainActivity.this, "Erro ao recuperar: " + ex.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

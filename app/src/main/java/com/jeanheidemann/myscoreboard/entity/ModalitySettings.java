@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**
  * Created by jean.heidemann on 12/05/2016.
  */
-public class MadalitySettings {
+public class ModalitySettings {
     private String name;
     private Order order;
     private ArrayList<Integer> listPossiblePoints;
